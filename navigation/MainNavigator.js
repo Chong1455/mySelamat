@@ -68,7 +68,7 @@ const SopNavigator = createStackNavigator(
   },
   {
     navigationOptions: {
-      drawerLabel: "Standard Operation Procedure",
+      drawerLabel: "Standard Operating Procedure",
     },
     defaultNavigationOptions: defaultNavOptions,
   }
@@ -106,7 +106,7 @@ const MainNavigator = createDrawerNavigator(
   },
   {
     contentOptions: {
-      activeTintColor: Colors.primary,
+      activeTintColor: Colors.primaryColor,
       labelStyle: {
         marginTop: 20,
       },

@@ -68,7 +68,7 @@ const SopScreen = (props) => {
 
 SopScreen.navigationOptions = (navData) => {
   return {
-    headerTitle: "Standard Operation Procedure",
+    headerTitle: "Standard Operating Procedure",
     headerLeft: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
