@@ -1,11 +1,12 @@
 import React from "react";
-import { createAppContainer } from "react-navigation";
+import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import {
   createDrawerNavigator,
   DrawerNavigatorItems,
 } from "react-navigation-drawer";
 import { Platform, SafeAreaView, Button, View } from "react-native";
+import { useDispatch } from "react-redux";
 
 import HomeScreen from "../screens/HomeScreen";
 import VaccinationScreen from "../screens/VaccinationScreen";
@@ -15,7 +16,9 @@ import SopTextScreen from "../screens/SopTextScreen";
 import SopVideoScreen from "../screens/SopVideoScreen";
 import UpdateStatusScreen from "../screens/UpdateStatusScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import AuthScreen from "../screens/AuthScreen";
 import Colors from "../constants/Colors";
+import * as authActions from "../store/actions/auth";
 
 const defaultNavOptions = {
   headerStyle: {
@@ -95,7 +98,7 @@ const ProfileNavigator = createStackNavigator(
   }
 );
 
-const MainNavigator = createDrawerNavigator(
+const ModuleNavigator = createDrawerNavigator(
   {
     Home: HomeNavigator,
     Vaccination: VaccinationNavigator,
@@ -112,6 +115,7 @@ const MainNavigator = createDrawerNavigator(
       },
     },
     contentComponent: (props) => {
+      const dispatch = useDispatch();
       return (
         <View style={{ flex: 1, paddingTop: 20 }}>
           <SafeAreaView forceInset={{ top: "always", horizontal: "never" }}>
@@ -119,7 +123,10 @@ const MainNavigator = createDrawerNavigator(
             <Button
               title="Logout"
               color={Colors.primaryColor}
-              onPress={() => {}}
+              onPress={() => {
+                dispatch(authActions.logout());
+                props.navigation.navigate("Auth");
+              }}
             />
           </SafeAreaView>
         </View>
@@ -127,5 +134,19 @@ const MainNavigator = createDrawerNavigator(
     },
   }
 );
+
+const AuthNavigator = createStackNavigator(
+  {
+    Auth: AuthScreen,
+  },
+  {
+    defaultNavigationOptions: defaultNavOptions,
+  }
+);
+
+const MainNavigator = createSwitchNavigator({
+  Auth: AuthNavigator,
+  Module: ModuleNavigator,
+});
 
 export default createAppContainer(MainNavigator);

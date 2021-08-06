@@ -18,8 +18,8 @@ const TravelHistoryScreen = (props) => {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    //alert(`${data}`);
-    Linking.openURL(`${data}`);
+    alert(`${data}`);
+    // Linking.openURL(`${data}`);
   };
 
   if (hasPermission === null) {

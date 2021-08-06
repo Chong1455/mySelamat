@@ -1,12 +1,12 @@
 import React from "react";
-import { View, Button, StyleSheet, Linking } from "react-native";
+import { ScrollView, Button, StyleSheet, Linking } from "react-native";
 
 import Article from "../components/Article";
 import Colors from "../constants/Colors";
 
 const SopVideoScreen = (props) => {
   return (
-    <View>
+    <ScrollView>
       <Article
         image="https://i.ytimg.com/vi/66KSu2PQ-Mg/maxresdefault.jpg"
         title="Animated SOP for school's reopening"
@@ -33,7 +33,7 @@ const SopVideoScreen = (props) => {
           }}
         />
       </Article>
-    </View>
+    </ScrollView>
   );
 };
 
