@@ -3,17 +3,32 @@ import { ScrollView, View, Text, StyleSheet, Button } from "react-native";
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { RadioButton } from "react-native-paper";
+import { useDispatch } from "react-redux";
 
 import HeaderButton from "../components/HeaderButton";
 import Colors from "../constants/Colors";
+import * as statusActions from "../store/actions/status";
 
 const UpdateStatusScreen = (props) => {
+  const dispatch = useDispatch();
+
   const [Q1, setQ1] = useState();
   const [Q2, setQ2] = useState();
   const [Q3, setQ3] = useState();
   const [Q4, setQ4] = useState();
   const [Q5, setQ5] = useState();
   const [Q6, setQ6] = useState();
+
+  const submitHandler = async () => {
+    var risk;
+    const questions = [Q1, Q2, Q3, Q4, Q5, Q6];
+    if (questions.includes("yes")) {
+      risk = "high";
+    } else {
+      risk = "low";
+    }
+    await dispatch(statusActions.updateStatus(risk));
+  };
 
   return (
     <ScrollView>
@@ -182,7 +197,7 @@ const UpdateStatusScreen = (props) => {
               <Button
                 color={Colors.primaryColor}
                 title="Submit"
-                onPress={() => {}}
+                onPress={submitHandler}
               />
             </View>
           </Row>

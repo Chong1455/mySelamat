@@ -151,5 +151,4 @@ const MainNavigator = createSwitchNavigator({
   Module: ModuleNavigator,
 });
 
-// export default createAppContainer(MainNavigator);
-export default createAppContainer(ModuleNavigator);
+export default createAppContainer(MainNavigator);
