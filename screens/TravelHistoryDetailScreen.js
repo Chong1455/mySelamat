@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import TravelItem from "../components/TravelItem";
+import * as travelActions from "../store/actions/travel";
 
 const TravelHistoryDetailScreen = (props) => {
   const travelList = useSelector((state) => state.travel.travelList);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(travelActions.fetchTravels());
+  }, [dispatch]);
 
   return (
     <FlatList

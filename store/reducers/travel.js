@@ -1,16 +1,19 @@
-import TRAVELS from "../../data/dummy-data";
-import { CREATE_TRAVEL } from "../actions/travel";
+import { CREATE_TRAVEL, SET_TRAVEL } from "../actions/travel";
 import Travel from "../../models/travel";
 
 const initialState = {
-  travelList: TRAVELS,
+  travelList: [],
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case SET_TRAVEL:
+      return {
+        travelList: action.travels,
+      };
     case CREATE_TRAVEL:
       const newTravel = new Travel(
-        new Date().toString(),
+        action.travelData.id,
         action.travelData.location,
         action.travelData.name,
         action.travelData.phone,
