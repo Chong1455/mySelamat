@@ -171,6 +171,11 @@ const AuthScreen = (props) => {
 
 AuthScreen.navigationOptions = {
   headerTitle: "Welcome to MySelamat System",
+  headerTitleStyle: {
+    textAlign: "center",
+    flex: 1,
+    fontFamily: "open-sans-bold",
+  },
 };
 
 const styles = StyleSheet.create({

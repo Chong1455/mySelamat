@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import HomeScreen from "../screens/HomeScreen";
 import VaccinationScreen from "../screens/VaccinationScreen";
 import TravelHistoryScreen from "../screens/TravelHistoryScreen";
+import TravelHistoryDetailScreen from "../screens/TravelHistoryDetailScreen";
 import SopScreen from "../screens/SopScreen";
 import SopTextScreen from "../screens/SopTextScreen";
 import SopVideoScreen from "../screens/SopVideoScreen";
@@ -54,6 +55,7 @@ const VaccinationNavigator = createStackNavigator(
 const TravelHistoryNavigator = createStackNavigator(
   {
     TravelHistory: TravelHistoryScreen,
+    TravelHistoryDetail: TravelHistoryDetailScreen,
   },
   {
     navigationOptions: {
@@ -149,4 +151,5 @@ const MainNavigator = createSwitchNavigator({
   Module: ModuleNavigator,
 });
 
-export default createAppContainer(MainNavigator);
+// export default createAppContainer(MainNavigator);
+export default createAppContainer(ModuleNavigator);

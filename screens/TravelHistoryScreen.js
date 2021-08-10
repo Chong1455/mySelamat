@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet, Button, Linking } from "react-native";
+import { Text, View, StyleSheet, Button } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import { useSelector, useDispatch } from "react-redux";
 
 import HeaderButton from "../components/HeaderButton";
+import * as travelActions from "../store/actions/travel";
+import Colors from "../constants/Colors";
 
 const TravelHistoryScreen = (props) => {
+  const dispatch = useDispatch();
+
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
 
@@ -16,10 +21,18 @@ const TravelHistoryScreen = (props) => {
     })();
   }, []);
 
-  const handleBarCodeScanned = ({ type, data }) => {
+  const handleBarCodeScanned = async ({ type, data }) => {
     setScanned(true);
-    alert(`${data}`);
-    // Linking.openURL(`${data}`);
+    const myArr = data.split(",");
+    const location = myArr[0];
+    const name = myArr[1];
+    const phone = myArr[2];
+    const date = myArr[3];
+    const time = myArr[4];
+    dispatch(travelActions.createTravel(location, name, phone, date, time));
+    alert(
+      `Location: ${location}\nName: ${name}\nPhone number: ${phone}\nDate: ${date}\nTime: ${time}`
+    );
   };
 
   if (hasPermission === null) {
@@ -35,8 +48,23 @@ const TravelHistoryScreen = (props) => {
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
       />
+      <View style={styles.buttonContainer}>
+        <Button
+          color={Colors.primaryColor}
+          title="History"
+          onPress={() => {
+            props.navigation.navigate("TravelHistoryDetail");
+          }}
+        />
+      </View>
       {scanned && (
-        <Button title={"Tap to Scan Again"} onPress={() => setScanned(false)} />
+        <View style={{ padding: 35 }}>
+          <Button
+            title={"Tap to Scan Again"}
+            color={Colors.primaryColor}
+            onPress={() => setScanned(false)}
+          />
+        </View>
       )}
     </View>
   );
@@ -65,6 +93,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#fff",
+  },
+  buttonContainer: {
+    flex: 1,
+    alignSelf: "flex-end",
+    padding: 35,
   },
   barCodeView: {
     width: "100%",
