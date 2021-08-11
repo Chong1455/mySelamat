@@ -65,6 +65,7 @@ const AuthScreen = (props) => {
   }, [error]);
 
   const signupHandler = async () => {
+    setError(null);
     setSignUpIsLoading(true);
     try {
       await dispatch(
@@ -81,6 +82,7 @@ const AuthScreen = (props) => {
   };
 
   const loginHandler = async () => {
+    setError(null);
     setLoginIsLoading(true);
     try {
       await dispatch(

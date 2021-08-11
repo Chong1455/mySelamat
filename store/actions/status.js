@@ -36,9 +36,16 @@ export const getStatus = () => {
     );
     const resData = await response.json();
 
+    var updatedRisk;
+    try {
+      updatedRisk = resData.risk;
+    } catch (err) {
+      updatedRisk = "low";
+    }
+
     dispatch({
       type: GET_STATUS,
-      risk: resData.risk,
+      risk: updatedRisk,
     });
   };
 };
