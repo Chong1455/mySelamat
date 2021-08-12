@@ -8,12 +8,14 @@ import ReduxThunk from "redux-thunk";
 import authReducer from "./store/reducers/auth";
 import travelReducer from "./store/reducers/travel";
 import statusReducer from "./store/reducers/status";
+import userReducer from "./store/reducers/user";
 import MainNavigator from "./navigation/MainNavigator";
 
 const rootReducer = combineReducers({
   auth: authReducer,
   travel: travelReducer,
   status: statusReducer,
+  user: userReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));

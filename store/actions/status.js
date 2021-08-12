@@ -6,7 +6,7 @@ export const updateStatus = (risk) => {
     // console.log(getState());
     const userId = getState().auth.userId;
     const response = await fetch(
-      `https://myselamat-e56db-default-rtdb.firebaseio.com/status/${userId}.json`,
+      `https://myselamat-e56db-default-rtdb.firebaseio.com/${userId}/status.json`,
       {
         method: "PATCH",
         headers: {
@@ -32,7 +32,7 @@ export const getStatus = () => {
     // console.log(getState());
     const userId = getState().auth.userId;
     const response = await fetch(
-      `https://myselamat-e56db-default-rtdb.firebaseio.com/status/${userId}.json`
+      `https://myselamat-e56db-default-rtdb.firebaseio.com/${userId}/status.json`
     );
     const resData = await response.json();
 

@@ -7,10 +7,11 @@ export const fetchTravels = () => {
   return async (dispatch, getState) => {
     const userId = getState().auth.userId;
     const response = await fetch(
-      `https://myselamat-e56db-default-rtdb.firebaseio.com/travel/${userId}.json`
+      `https://myselamat-e56db-default-rtdb.firebaseio.com/${userId}/travel.json`
     );
 
     const resData = await response.json();
+    console.log(resData);
     const loadedTravels = [];
     for (const key in resData) {
       loadedTravels.push(
@@ -32,7 +33,7 @@ export const createTravel = (location, name, phone, date, time) => {
   return async (dispatch, getState) => {
     const userId = getState().auth.userId;
     const response = await fetch(
-      `https://myselamat-e56db-default-rtdb.firebaseio.com/travel/${userId}.json`,
+      `https://myselamat-e56db-default-rtdb.firebaseio.com/${userId}/travel.json`,
       {
         method: "POST",
         headers: {

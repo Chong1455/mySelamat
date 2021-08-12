@@ -18,6 +18,7 @@ import SopVideoScreen from "../screens/SopVideoScreen";
 import UpdateStatusScreen from "../screens/UpdateStatusScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import AuthScreen from "../screens/AuthScreen";
+import RegisterScreen from "../screens/RegisterScreen";
 import Colors from "../constants/Colors";
 import * as authActions from "../store/actions/auth";
 
@@ -140,6 +141,7 @@ const ModuleNavigator = createDrawerNavigator(
 const AuthNavigator = createStackNavigator(
   {
     Auth: AuthScreen,
+    Register: RegisterScreen,
   },
   {
     defaultNavigationOptions: defaultNavOptions,

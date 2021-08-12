@@ -41,8 +41,7 @@ const formReducer = (state, action) => {
 };
 
 const AuthScreen = (props) => {
-  const [loginIsLoading, setLoginIsLoading] = useState(false);
-  const [signUpIsLoading, setSignUpIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
   const dispatch = useDispatch();
 
@@ -64,26 +63,9 @@ const AuthScreen = (props) => {
     }
   }, [error]);
 
-  const signupHandler = async () => {
-    setError(null);
-    setSignUpIsLoading(true);
-    try {
-      await dispatch(
-        authActions.signup(
-          formState.inputValues.email,
-          formState.inputValues.password
-        )
-      );
-      props.navigation.navigate("Module");
-    } catch (err) {
-      setError(err.message);
-      setSignUpIsLoading(false);
-    }
-  };
-
   const loginHandler = async () => {
     setError(null);
-    setLoginIsLoading(true);
+    setIsLoading(true);
     try {
       await dispatch(
         authActions.login(
@@ -94,7 +76,7 @@ const AuthScreen = (props) => {
       props.navigation.navigate("Module");
     } catch (err) {
       setError(err.message);
-      setLoginIsLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -143,7 +125,7 @@ const AuthScreen = (props) => {
               initialValue=""
             />
             <View style={styles.buttonContainer}>
-              {loginIsLoading ? (
+              {isLoading ? (
                 <ActivityIndicator size="small" color={Colors.primaryColor} />
               ) : (
                 <Button
@@ -154,15 +136,13 @@ const AuthScreen = (props) => {
               )}
             </View>
             <View style={styles.buttonContainer}>
-              {signUpIsLoading ? (
-                <ActivityIndicator size="small" color={Colors.primaryColor} />
-              ) : (
-                <Button
-                  title="Register"
-                  color="#C2185B"
-                  onPress={signupHandler}
-                />
-              )}
+              <Button
+                title="Register"
+                color="#C2185B"
+                onPress={() => {
+                  props.navigation.navigate("Register");
+                }}
+              />
             </View>
           </ScrollView>
         </Card>
