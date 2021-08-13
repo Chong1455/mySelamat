@@ -12,13 +12,8 @@ export default (state = initialState, action) => {
         myUser: action.user,
       };
     case CREATE_USER:
-      const newUser = new User(
-        action.userData.name,
-        action.userData.age,
-        action.userData.address
-      );
       return {
-        myUser: newUser,
+        myUser: action.user,
       };
   }
   return state;

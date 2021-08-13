@@ -41,14 +41,12 @@ export const createUser = (name, age, address) => {
     );
 
     const resData = await response.json();
+    const loadedUser = [];
+    loadedUser.push(new User(name, age, address));
 
     dispatch({
       type: CREATE_USER,
-      userData: {
-        name,
-        age,
-        address,
-      },
+      user: loadedUser,
     });
   };
 };

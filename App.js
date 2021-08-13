@@ -9,6 +9,7 @@ import authReducer from "./store/reducers/auth";
 import travelReducer from "./store/reducers/travel";
 import statusReducer from "./store/reducers/status";
 import userReducer from "./store/reducers/user";
+import vaccineReducer from "./store/reducers/vaccine";
 import MainNavigator from "./navigation/MainNavigator";
 
 const rootReducer = combineReducers({
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   travel: travelReducer,
   status: statusReducer,
   user: userReducer,
+  vaccine: vaccineReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));

@@ -8,14 +8,18 @@ import * as statusActions from "../store/actions/status";
 import * as userActions from "../store/actions/user";
 
 const ProfileScreen = (props) => {
-  const myStatus = useSelector((state) => state.status.myStatus).toUpperCase();
+  const myStatus = useSelector((state) => state.status.myStatus);
   const myUser = useSelector((state) => state.user.myUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(statusActions.getStatus());
-    dispatch(userActions.fetchUser());
+    async function fetchData() {
+      await dispatch(statusActions.getStatus());
+      await dispatch(userActions.fetchUser());
+    }
+    fetchData();
   }, []);
+
   const name = myUser[0].name;
   const age = myUser[0].age;
   const address = myUser[0].address;
