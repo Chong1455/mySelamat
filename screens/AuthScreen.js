@@ -101,48 +101,61 @@ const AuthScreen = (props) => {
       <View style={styles.screen}>
         <Card style={styles.authContainer}>
           <ScrollView>
-            <Input
-              id="email"
-              label="E-Mail"
-              keyboardType="email-address"
-              required
-              email
-              autoCapitalize="none"
-              errorText="Please enter a valid email address."
-              onInputChange={inputChangeHandler}
-              initialValue=""
-            />
-            <Input
-              id="password"
-              label="Password"
-              keyboardType="default"
-              secureTextEntry
-              required
-              minLength={5}
-              autoCapitalize="none"
-              errorText="Please enter a valid password."
-              onInputChange={inputChangeHandler}
-              initialValue=""
-            />
-            <View style={styles.buttonContainer}>
-              {isLoading ? (
-                <ActivityIndicator size="small" color={Colors.primaryColor} />
-              ) : (
-                <Button
-                  title="Login"
-                  color={Colors.primaryColor}
-                  onPress={loginHandler}
-                />
-              )}
-            </View>
-            <View style={styles.buttonContainer}>
-              <Button
-                title="Register"
-                color="#C2185B"
-                onPress={() => {
-                  props.navigation.navigate("Register");
-                }}
+            <View style={styles.container}>
+              <Input
+                id="email"
+                label="E-Mail"
+                keyboardType="email-address"
+                required
+                email
+                autoCapitalize="none"
+                errorText="Please enter a valid email address."
+                onInputChange={inputChangeHandler}
+                initialValue=""
               />
+              <Input
+                id="password"
+                label="Password"
+                keyboardType="default"
+                secureTextEntry
+                required
+                minLength={5}
+                autoCapitalize="none"
+                errorText="Please enter a valid password."
+                onInputChange={inputChangeHandler}
+                initialValue=""
+              />
+              <View style={styles.buttonContainer}>
+                {isLoading ? (
+                  <ActivityIndicator size="small" color={Colors.primaryColor} />
+                ) : (
+                  <Button
+                    title="Login"
+                    color={Colors.primaryColor}
+                    onPress={loginHandler}
+                  />
+                )}
+              </View>
+            </View>
+            <View
+              style={{
+                marginVertical: 0,
+                borderBottomColor: "black",
+                borderBottomWidth: 1.7,
+                width: "100%",
+                padding: 0,
+              }}
+            />
+            <View style={styles.container}>
+              <View>
+                <Button
+                  title="Create new account"
+                  color="#C2185B"
+                  onPress={() => {
+                    props.navigation.navigate("Register");
+                  }}
+                />
+              </View>
             </View>
           </ScrollView>
         </Card>
@@ -172,6 +185,8 @@ const styles = StyleSheet.create({
     maxWidth: 400,
     minWidth: 200,
     maxHeight: 400,
+  },
+  container: {
     padding: 20,
   },
   buttonContainer: {

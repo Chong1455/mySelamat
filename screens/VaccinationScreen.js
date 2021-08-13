@@ -23,15 +23,20 @@ const VaccinationScreen = (props) => {
   const myUser = useSelector((state) => state.user.myUser);
   const dispatch = useDispatch();
 
+  async function fetchData() {
+    await dispatch(vaccineActions.getVaccine());
+    await dispatch(userActions.fetchUser());
+  }
+
   useEffect(() => {
-    async function fetchData() {
-      await dispatch(vaccineActions.getVaccine());
-      await dispatch(userActions.fetchUser());
-    }
     fetchData();
   }, []);
 
-  const name = myUser[0].name;
+  try {
+    var name = myUser[0].name;
+  } catch (err) {
+    fetchData();
+  }
 
   const [Q1, setQ1] = useState("");
   const [Q2, setQ2] = useState("");
@@ -52,7 +57,7 @@ const VaccinationScreen = (props) => {
     await dispatch(vaccineActions.createVaccine("yes"));
     Alert.alert(
       "Form submitted successfully",
-      "Please refresh the page again to view vaccine details",
+      "Please refresh the page again to view vaccination details",
       [{ text: "Okay" }]
     );
   };
@@ -148,12 +153,28 @@ const VaccinationScreen = (props) => {
     );
   } else {
     return (
-      <View>
-        <Text>Name: {name}</Text>
-        <Text>Eligible: Yes</Text>
-        <Text>Vaccination Details</Text>
-        <Text>Date: 13/10/2021</Text>
-        <Text>Location: Utar, Kampar</Text>
+      <View style={styles.screen}>
+        <View style={styles.textContainer}>
+          <Text style={styles.name}>
+            Name:{"\t\t\t "}
+            {name}
+            {"\n"}
+          </Text>
+          <Text style={styles.eligible}>
+            Eligible: {"\t\t\t"}
+            Yes
+            {"\n"}
+          </Text>
+          <Text style={styles.vaccinationDetail}>Vaccination Details</Text>
+          <Text style={styles.date}>
+            Date: {"\t\t\t"}
+            13/10/2021
+          </Text>
+          <Text style={styles.location}>
+            Location: {"\t\t\t"}
+            Utar, Kampar
+          </Text>
+        </View>
       </View>
     );
   }
@@ -212,6 +233,38 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     width: "90%",
     marginBottom: 7,
+  },
+  screen: {
+    flex: 1,
+    backgroundColor: Colors.accentColor,
+  },
+  textContainer: {
+    margin: 40,
+  },
+  name: {
+    fontSize: 25,
+    fontFamily: "open-sans",
+    paddingLeft: 30,
+  },
+  eligible: {
+    paddingLeft: 18,
+    fontSize: 25,
+    fontFamily: "open-sans",
+  },
+  vaccinationDetail: {
+    fontSize: 25,
+    fontFamily: "open-sans",
+    fontWeight: "bold",
+    textDecorationLine: "underline",
+  },
+  date: {
+    paddingLeft: 45,
+    fontSize: 25,
+    fontFamily: "open-sans",
+  },
+  location: {
+    fontSize: 25,
+    fontFamily: "open-sans",
   },
 });
 

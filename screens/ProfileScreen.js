@@ -6,30 +6,54 @@ import { useSelector, useDispatch } from "react-redux";
 import HeaderButton from "../components/HeaderButton";
 import * as statusActions from "../store/actions/status";
 import * as userActions from "../store/actions/user";
+import Colors from "../constants/Colors";
 
 const ProfileScreen = (props) => {
-  const myStatus = useSelector((state) => state.status.myStatus);
+  var myStatus = useSelector((state) => state.status.myStatus);
   const myUser = useSelector((state) => state.user.myUser);
   const dispatch = useDispatch();
 
+  async function fetchData() {
+    await dispatch(statusActions.getStatus());
+    await dispatch(userActions.fetchUser());
+  }
+
   useEffect(() => {
-    async function fetchData() {
-      await dispatch(statusActions.getStatus());
-      await dispatch(userActions.fetchUser());
-    }
     fetchData();
   }, []);
 
-  const name = myUser[0].name;
-  const age = myUser[0].age;
-  const address = myUser[0].address;
+  try {
+    var name = myUser[0].name;
+    var age = myUser[0].age;
+    var address = myUser[0].address;
+    myStatus = myStatus.toUpperCase();
+  } catch (err) {
+    fetchData();
+  }
 
   return (
     <View style={styles.screen}>
-      <Text>Name: {name}</Text>
-      <Text>Age: {age}</Text>
-      <Text>Address: {address}</Text>
-      <Text>My status: {myStatus}</Text>
+      <View style={styles.textContainer}>
+        <Text style={styles.name}>
+          Name:{"\t\t\t"}
+          {name}
+          {"\n"}
+        </Text>
+        <Text style={styles.age}>
+          Age: {"\t\t\t"}
+          {age}
+          {"\n"}
+        </Text>
+        <Text style={styles.address}>
+          Address: {"\t\t\t"}
+          {address}
+          {"\n"}
+        </Text>
+        <Text style={styles.risk}>
+          Risk: {"\t\t\t"}
+          {myStatus}
+        </Text>
+      </View>
     </View>
   );
 };
@@ -54,8 +78,29 @@ ProfileScreen.navigationOptions = (navData) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: Colors.accentColor,
+  },
+  textContainer: {
+    margin: 40,
+  },
+  name: {
+    fontSize: 25,
+    fontFamily: "open-sans",
+    paddingLeft: 25,
+  },
+  age: {
+    paddingLeft: 50,
+    fontSize: 25,
+    fontFamily: "open-sans",
+  },
+  address: {
+    fontSize: 25,
+    fontFamily: "open-sans",
+  },
+  risk: {
+    paddingLeft: 47,
+    fontSize: 25,
+    fontFamily: "open-sans",
   },
 });
 

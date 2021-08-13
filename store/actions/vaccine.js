@@ -35,7 +35,7 @@ export const getVaccine = () => {
       `https://myselamat-e56db-default-rtdb.firebaseio.com/${userId}/vaccine.json`
     );
     const resData = await response.json();
-    var vaccine = "";
+    var vaccine = "no";
     for (const key in resData) {
       vaccine = resData[key].vaccine;
     }
