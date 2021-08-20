@@ -34,25 +34,38 @@ const ProfileScreen = (props) => {
   return (
     <View style={styles.screen}>
       <View style={styles.textContainer}>
-        <Text style={styles.name}>
-          Name:{"\t\t\t"}
-          {name}
-          {"\n"}
-        </Text>
-        <Text style={styles.age}>
-          Age: {"\t\t\t"}
-          {age}
-          {"\n"}
-        </Text>
-        <Text style={styles.address}>
-          Address: {"\t\t\t"}
-          {address}
-          {"\n"}
-        </Text>
-        <Text style={styles.risk}>
-          Risk: {"\t\t\t"}
-          {myStatus}
-        </Text>
+        <View style={{ flexDirection: "row" }}>
+          <View>
+            <Text style={styles.name}>Name:</Text>
+          </View>
+          <View>
+            <Text style={styles.border}>{name}</Text>
+          </View>
+        </View>
+        <View style={{ flexDirection: "row" }}>
+          <View>
+            <Text style={styles.age}>Age:</Text>
+          </View>
+          <View>
+            <Text style={styles.border}>{age}</Text>
+          </View>
+        </View>
+        <View style={{ flexDirection: "row" }}>
+          <View>
+            <Text style={styles.address}>Address:</Text>
+          </View>
+          <View>
+            <Text style={styles.border}>{address}</Text>
+          </View>
+        </View>
+        <View style={{ flexDirection: "row" }}>
+          <View>
+            <Text style={styles.risk}>Risk:</Text>
+          </View>
+          <View>
+            <Text style={styles.border}>{myStatus}</Text>
+          </View>
+        </View>
       </View>
     </View>
   );
@@ -83,13 +96,23 @@ const styles = StyleSheet.create({
   textContainer: {
     margin: 40,
   },
+  border: {
+    borderColor: "black",
+    borderWidth: 1,
+    fontSize: 25,
+    fontFamily: "open-sans",
+    width: 200,
+    padding: 3,
+    marginLeft: 20,
+    marginBottom: 20,
+  },
   name: {
     fontSize: 25,
     fontFamily: "open-sans",
     paddingLeft: 25,
   },
   age: {
-    paddingLeft: 50,
+    paddingLeft: 51,
     fontSize: 25,
     fontFamily: "open-sans",
   },

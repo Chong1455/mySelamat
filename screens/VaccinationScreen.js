@@ -155,25 +155,39 @@ const VaccinationScreen = (props) => {
     return (
       <View style={styles.screen}>
         <View style={styles.textContainer}>
-          <Text style={styles.name}>
-            Name:{"\t\t\t "}
-            {name}
-            {"\n"}
-          </Text>
-          <Text style={styles.eligible}>
-            Eligible: {"\t\t\t"}
-            Yes
-            {"\n"}
-          </Text>
+          <View style={{ flexDirection: "row" }}>
+            <View>
+              <Text style={styles.name}>Name:</Text>
+            </View>
+            <View>
+              <Text style={styles.border}>{name}</Text>
+            </View>
+          </View>
+          <View style={{ flexDirection: "row" }}>
+            <View>
+              <Text style={styles.eligible}>Eligible:</Text>
+            </View>
+            <View>
+              <Text style={styles.border}>Yes</Text>
+            </View>
+          </View>
           <Text style={styles.vaccinationDetail}>Vaccination Details</Text>
-          <Text style={styles.date}>
-            Date: {"\t\t\t"}
-            13/10/2021
-          </Text>
-          <Text style={styles.location}>
-            Location: {"\t\t\t"}
-            Utar, Kampar
-          </Text>
+          <View style={{ flexDirection: "row" }}>
+            <View>
+              <Text style={styles.date}>Date:</Text>
+            </View>
+            <View>
+              <Text style={styles.border}>20/8/2021</Text>
+            </View>
+          </View>
+          <View style={{ flexDirection: "row" }}>
+            <View>
+              <Text style={styles.location}>Location:</Text>
+            </View>
+            <View>
+              <Text style={styles.border}>Utar, Kampar</Text>
+            </View>
+          </View>
         </View>
       </View>
     );
@@ -206,6 +220,16 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     fontFamily: "open-sans",
+  },
+  border: {
+    borderColor: "black",
+    borderWidth: 1,
+    fontSize: 25,
+    fontFamily: "open-sans",
+    width: 200,
+    padding: 3,
+    marginLeft: 20,
+    marginBottom: 20,
   },
   question: {
     borderWidth: 1,
@@ -256,6 +280,7 @@ const styles = StyleSheet.create({
     fontFamily: "open-sans",
     fontWeight: "bold",
     textDecorationLine: "underline",
+    marginBottom: 10,
   },
   date: {
     paddingLeft: 45,

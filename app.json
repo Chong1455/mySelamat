@@ -1,35 +1,29 @@
 {
   "expo": {
-    "name": "mySelamat",
-    "slug": "mySelamat",
+    "name": "MySelamat",
+    "slug": "my-selamat",
+    "privacy": "public",
+    "sdkVersion": "42.0.0",
+    "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/MySelamat.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/MySelamat.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#4a148c"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "plugins": [
-      "expo-image-picker"
-    ]
+      "package": "com.cks.my_selamat",
+      "versionCode": 4,
+      "permissions": ["CAMERA"]
+    }
   }
 }
