@@ -21,8 +21,8 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.cks.my_selamat",
-      "versionCode": 4,
+      "package": "com.cks.my_selamat2",
+      "versionCode": 2,
       "permissions": ["CAMERA"]
     }
   }
